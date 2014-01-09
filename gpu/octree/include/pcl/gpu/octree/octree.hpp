@@ -137,6 +137,14 @@ namespace pcl
               * \param[out] result results packed to signle array
               */
             void radiusSearch(const Queries& centers, const Indices& indices, float radius, int max_results, NeighborIndices& result) const;
+			/** \brief Performs batch radius search on GPU
+              * \param[in] centers array of centers  
+              * \param[in] indices indices for centers array (only for these points search is performed)
+              * \param[in] radius radius for all queries
+              * \param[in] max_results max number of returned points for each querey
+              * \param[out] result results packed to signle array
+              */
+            void radiusCylindricSearch(const Queries& centers, const Indices& indices, float radius, int max_results, NeighborIndices& result, bool down = true, bool up = true) const;
 
             /** \brief Batch approximate nearest search on GPU
               * \param[in] queries array of centers

@@ -97,6 +97,8 @@ namespace pcl
 
             void radiusSearch(const Queries& queries, const Indices& indices, float radius, NeighborIndices& results);
 
+			void radiusCylindricSearch(const Queries& queries, const Indices& indices, float radius, NeighborIndices& results, bool down = true, bool up = true);			
+			
             void approxNearestSearch(const Queries& queries, NeighborIndices& results) const;
             
             void nearestKSearchBatch(const Queries& queries, int k, NeighborIndices& results) const;
@@ -137,6 +139,8 @@ namespace pcl
         private:
             template<typename BatchType>
             void radiusSearchEx(BatchType& batch, const Queries& queries, NeighborIndices& results);
+            template<typename BatchType>
+            void radiusCylindricSearchEx(BatchType& batch, const Queries& queries, NeighborIndices& results, bool down, bool up);
         };
 
         void bruteForceRadiusSearch(const OctreeImpl::PointCloud& cloud, const OctreeImpl::PointType& query, float radius, DeviceArray<int>& result, DeviceArray<int>& buffer);

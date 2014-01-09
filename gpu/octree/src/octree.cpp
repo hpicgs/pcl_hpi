@@ -163,6 +163,16 @@ void pcl::gpu::Octree::radiusSearch(const Queries& queries, const Indices& indic
     static_cast<OctreeImpl*>(impl)->radiusSearch(q, indices, radius, results);
 }
 
+void pcl::gpu::Octree::radiusCylindricSearch(const Queries& queries, const Indices& indices, float radius, int max_results, NeighborIndices& results, bool down, bool up) const
+{
+    assert(queries.size() > 0 && indices.size() > 0);
+    results.create(indices.size(), max_results);
+    results.sizes.create(indices.size());
+
+    const OctreeImpl::Queries& q = (const OctreeImpl::Queries&)queries;
+    static_cast<OctreeImpl*>(impl)->radiusCylindricSearch(q, indices, radius, results, down, up);
+}
+
 void pcl::gpu::Octree::approxNearestSearch(const Queries& queries, NeighborIndices& results) const
 {
     assert(queries.size() > 0);    

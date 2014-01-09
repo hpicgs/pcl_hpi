@@ -86,12 +86,70 @@ namespace pcl
         }
 
         __device__ __host__ __forceinline__
+        static bool checkIfNodeInsideCylinder(const float3& minp, const float3& maxp, const float3& c, float r, bool down = true, bool up = true)
+        {
+            if ((!down && maxp.z < c.z) || (!up && minp.z > c.z))
+                return false;
+
+            r *= r;
+
+            float d2_xmin = (minp.x - c.x) * (minp.x - c.x);
+            float d2_ymin = (minp.y - c.y) * (minp.y - c.y);
+
+            if (d2_xmin + d2_ymin > r)
+                return false;
+
+            if (d2_xmin + d2_ymin > r)
+                return false;
+
+            float d2_ymax = (maxp.y - c.y) * (maxp.y - c.y);
+
+            if (d2_xmin + d2_ymax > r)
+                return false;
+
+            if (d2_xmin + d2_ymax > r)
+                return false;
+
+            float d2_xmax = (maxp.x - c.x) * (maxp.x - c.x);
+
+            if (d2_xmax + d2_ymin > r)
+                return false;
+
+            if (d2_xmax + d2_ymin > r)
+                return false;
+
+            if (d2_xmax + d2_ymax > r)
+                return false;
+
+            if (d2_xmax + d2_ymax > r)
+                return false;
+
+            return true;
+        }
+
+        __device__ __host__ __forceinline__
         static bool checkIfNodeOutsideSphere(const float3& minp, const float3& maxp, const float3& c, float r)
         {
             if (maxp.x < (c.x - r) ||  maxp.y < (c.y - r) || maxp.z < (c.z - r))
                 return true;
 
             if ((c.x + r) < minp.x || (c.y + r) < minp.y || (c.z + r) < minp.z)
+                return true;
+
+            return false;
+        }
+
+        __device__ __host__ __forceinline__
+		
+		static bool checkIfNodeOutsideCylinder(const float3& minp, const float3& maxp, const float3& c, float r, bool down = true, bool up = true)
+        {
+            if ((!down && maxp.z < c.z) || (!up && minp.z > c.z))
+                return true;
+
+            if (maxp.x < (c.x - r) ||  maxp.y < (c.y - r))
+                return true;
+
+            if ((c.x + r) < minp.x || (c.y + r) < minp.y)
                 return true;
 
             return false;
