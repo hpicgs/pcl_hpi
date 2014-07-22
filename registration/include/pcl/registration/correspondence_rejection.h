@@ -142,8 +142,8 @@ namespace pcl
 
         /** \brief Abstract method for setting the source cloud */
         virtual void
-        setSourcePoints (pcl::PCLPointCloud2::ConstPtr cloud2)
-        { 
+        setSourcePoints (pcl::PCLPointCloud2::ConstPtr /*cloud2*/)
+        {
           PCL_WARN ("[pcl::registration::%s::setSourcePoints] This class does not require an input source cloud", getClassName ().c_str ());
         }
         
@@ -154,7 +154,7 @@ namespace pcl
 
         /** \brief Abstract method for setting the source normals */
         virtual void
-        setSourceNormals (pcl::PCLPointCloud2::ConstPtr cloud2)
+        setSourceNormals (pcl::PCLPointCloud2::ConstPtr /*cloud2*/)
         { 
           PCL_WARN ("[pcl::registration::%s::setSourceNormals] This class does not require input source normals", getClassName ().c_str ());
         }
@@ -165,8 +165,8 @@ namespace pcl
 
         /** \brief Abstract method for setting the target cloud */
         virtual void
-        setTargetPoints (pcl::PCLPointCloud2::ConstPtr cloud2)
-        { 
+        setTargetPoints (pcl::PCLPointCloud2::ConstPtr /*cloud2*/)
+        {
           PCL_WARN ("[pcl::registration::%s::setTargetPoints] This class does not require an input target cloud", getClassName ().c_str ());
         }
         
@@ -177,8 +177,8 @@ namespace pcl
 
         /** \brief Abstract method for setting the target normals */
         virtual void
-        setTargetNormals (pcl::PCLPointCloud2::ConstPtr cloud2)
-        { 
+        setTargetNormals (pcl::PCLPointCloud2::ConstPtr /*cloud2*/)
+        {
           PCL_WARN ("[pcl::registration::%s::setTargetNormals] This class does not require input target normals", getClassName ().c_str ());
         }
 
@@ -249,10 +249,14 @@ namespace pcl
           * data!), used to compute the correspondence distance.  
           * \param[in] cloud a cloud containing XYZ data
           */
-        PCL_DEPRECATED (void setInputCloud (const PointCloudConstPtr &cloud), "[pcl::registration::DataContainer::setInputCloud] setInputCloud is deprecated. Please use setInputSource instead.");
+        PCL_DEPRECATED ("[pcl::registration::DataContainer::setInputCloud] setInputCloud is deprecated. Please use setInputSource instead.")
+        void
+        setInputCloud (const PointCloudConstPtr &cloud);
 
         /** \brief Get a pointer to the input point cloud dataset target. */
-        PCL_DEPRECATED (PointCloudConstPtr const getInputCloud (), "[pcl::registration::DataContainer::getInputCloud] getInputCloud is deprecated. Please use getInputSource instead.");
+        PCL_DEPRECATED ("[pcl::registration::DataContainer::getInputCloud] getInputCloud is deprecated. Please use getInputSource instead.")
+        PointCloudConstPtr const
+        getInputCloud ();
 
         /** \brief Provide a source point cloud dataset (must contain XYZ
           * data!), used to compute the correspondence distance.  

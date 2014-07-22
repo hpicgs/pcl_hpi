@@ -113,11 +113,14 @@ namespace pcl
           *
           * \param[in] cloud the input point cloud source
           */
-        PCL_DEPRECATED (void setInputCloud (const PointCloudSourceConstPtr &cloud), "[pcl::registration::CorrespondenceEstimationBase::setInputCloud] setInputCloud is deprecated. Please use setInputSource instead.");
+        PCL_DEPRECATED ("[pcl::registration::CorrespondenceEstimationBase::setInputCloud] setInputCloud is deprecated. Please use setInputSource instead.")
+        void
+        setInputCloud (const PointCloudSourceConstPtr &cloud);
 
         /** \brief Get a pointer to the input point cloud dataset target. */
-        PCL_DEPRECATED (PointCloudSourceConstPtr const getInputCloud (), 
-            "[pcl::registration::CorrespondenceEstimationBase::getInputCloud] getInputCloud is deprecated. Please use getInputSource instead.");
+        PCL_DEPRECATED ("[pcl::registration::CorrespondenceEstimationBase::getInputCloud] getInputCloud is deprecated. Please use getInputSource instead.")
+        PointCloudSourceConstPtr const
+        getInputCloud ();
 
         /** \brief Provide a pointer to the input source 
           * (e.g., the point cloud that we want to align to the target)
@@ -158,8 +161,8 @@ namespace pcl
 
         /** \brief Abstract method for setting the source normals */
         virtual void
-        setSourceNormals (pcl::PCLPointCloud2::ConstPtr cloud2)
-        { 
+        setSourceNormals (pcl::PCLPointCloud2::ConstPtr /*cloud2*/)
+        {
           PCL_WARN ("[pcl::registration::%s::setSourceNormals] This class does not require input source normals", getClassName ().c_str ());
         }
         
@@ -170,8 +173,8 @@ namespace pcl
 
         /** \brief Abstract method for setting the target normals */
         virtual void
-        setTargetNormals (pcl::PCLPointCloud2::ConstPtr cloud2)
-        { 
+        setTargetNormals (pcl::PCLPointCloud2::ConstPtr /*cloud2*/)
+        {
           PCL_WARN ("[pcl::registration::%s::setTargetNormals] This class does not require input target normals", getClassName ().c_str ());
         }
 
@@ -439,7 +442,7 @@ namespace pcl
         virtual boost::shared_ptr< CorrespondenceEstimationBase<PointSource, PointTarget, Scalar> > 
         clone () const
         {
-          CorrespondenceEstimation<PointSource, PointTarget, Scalar>::Ptr copy (new CorrespondenceEstimation<PointSource, PointTarget, Scalar> (*this));
+          Ptr copy (new CorrespondenceEstimation<PointSource, PointTarget, Scalar> (*this));
           return (copy);
         }
      };

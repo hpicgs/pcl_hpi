@@ -90,7 +90,6 @@ namespace pcl
         , orientation_ (Eigen::Matrix3f::Zero ())
         , cloud_ ()
         , vertex_count_ (0)
-        , vertex_properties_counter_ (0)
         , vertex_offset_before_ (0)
         , range_grid_ (0)
         , rgb_offset_before_ (0)
@@ -105,7 +104,6 @@ namespace pcl
         , orientation_ (Eigen::Matrix3f::Zero ())
         , cloud_ ()
         , vertex_count_ (0)
-        , vertex_properties_counter_ (0)
         , vertex_offset_before_ (0)
         , range_grid_ (0)
         , rgb_offset_before_ (0)
@@ -521,7 +519,7 @@ namespace pcl
 
       //vertex element artifacts
       pcl::PCLPointCloud2 *cloud_;
-      size_t vertex_count_, vertex_properties_counter_;
+      size_t vertex_count_;
       int vertex_offset_before_;
       //range element artifacts
       std::vector<std::vector <int> > *range_grid_;
@@ -799,6 +797,7 @@ namespace pcl
       * \param[in] origin the sensor data acquisition origin (translation)
       * \param[in] orientation the sensor data acquisition origin (rotation)
       * \param[in] binary_mode true for binary mode, false (default) for ASCII
+      * \param[in] use_camera
       * \ingroup io
       */
     inline int 
