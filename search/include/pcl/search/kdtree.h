@@ -41,7 +41,7 @@
 #define PCL_SEARCH_KDTREE_H_
 
 #include <pcl/search/search.h>
-#include <pcl/kdtree/kdtree_flann.h>
+#include <pcl/kdtree/impl/kdtree_flann.hpp>
 
 namespace pcl
 {
